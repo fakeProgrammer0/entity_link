@@ -1,5 +1,6 @@
 import sys
 import pickle
+import datetime
 
 embedding_filepath = './data/'
 words_filepath = './data/words.txt'
@@ -29,9 +30,31 @@ def build_word_indices():
             pickle.dump(indices, out_file)
 
 def load_word_indices():
-    return pickle.load(word_indices_filepath)
+    with open(word_indices_filepath, 'rb'):
+        indices = pickle.load(word_indices_filepath)
+    return indices
+
+def test_indices_time():
+    t1 = datetime.datetime.now()
+    indices = get_word_indices()
+    t2 = datetime.datetime.now()
+    use_time = t2 - t1
+    print("get_word_indices() uses " + str(use_time))
+    
+    # t1 = datetime.datetime.now()
+    # build_word_indices()
+    # t2 = datetime.datetime.now()
+    # use_time = t2 - t1
+    # print("build_word_indices uses() " + str(use_time))
+    
+    t1 = datetime.datetime.now()
+    indices = load_word_indices()
+    t2 = datetime.datetime.now()
+    use_time = t2 - t1
+    print("load_word_indices uses() " + str(use_time))
 
 if __name__ == "__main__":
-    build_word_indices()
-    indices = load_word_indices()
-    print(indices[100])
+    test_indices_time()
+    print("Done")
+
+    
