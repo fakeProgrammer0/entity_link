@@ -30,8 +30,8 @@ def build_word_indices():
             pickle.dump(indices, out_file)
 
 def load_word_indices():
-    with open(word_indices_filepath, 'rb'):
-        indices = pickle.load(word_indices_filepath)
+    with open(word_indices_filepath, 'rb') as in_file:
+        indices = pickle.load(in_file)
     return indices
 
 def test_indices_time():
@@ -51,7 +51,7 @@ def test_indices_time():
     indices = load_word_indices()
     t2 = datetime.datetime.now()
     use_time = t2 - t1
-    print("load_word_indices uses() " + str(use_time))
+    print("load_word_indices() uses " + str(use_time))
 
 if __name__ == "__main__":
     test_indices_time()
