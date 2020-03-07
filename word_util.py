@@ -2,7 +2,7 @@ import sys
 import pickle
 import datetime
 
-embedding_filepath = './data/'
+embedding_filepath = './data/Tencent_AILab_ChineseEmbedding.txt'
 words_filepath = './data/words.txt'
 word_indices_filepath = './data/word_indices.pickle'
 
